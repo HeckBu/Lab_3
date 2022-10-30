@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1271</width>
+    <height>799</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1261</width>
+      <height>781</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="lab_3">
+     <attribute name="title">
+      <string>Lab 3</string>
+     </attribute>
+     <widget class="QToolButton" name="open_image">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Открыть изображение</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="image">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>170</y>
+        <width>211</width>
+        <height>211</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="image_2">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>10</y>
+        <width>631</width>
+        <height>531</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="geometry">
+       <rect>
+        <x>910</x>
+        <y>10</y>
+        <width>124</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Цветовые каналы</string>
+      </property>
+      <widget class="QRadioButton" name="red_ratio">
+       <property name="geometry">
+        <rect>
+         <x>21</x>
+         <y>31</y>
+         <width>67</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Красный</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="green_ratio">
+       <property name="geometry">
+        <rect>
+         <x>21</x>
+         <y>54</y>
+         <width>67</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Зеленый</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="blue_ratio">
+       <property name="geometry">
+        <rect>
+         <x>21</x>
+         <y>77</y>
+         <width>54</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Синий</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="initial_image">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Начальное изображение</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="grey_image">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>100</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Серое изображение</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="geometry">
+       <rect>
+        <x>910</x>
+        <y>130</y>
+        <width>341</width>
+        <height>241</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Изменение изображения</string>
+      </property>
+      <widget class="QLineEdit" name="scale">
+       <property name="geometry">
+        <rect>
+         <x>182</x>
+         <y>30</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_scale">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>151</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>1. Коэффициент масштабирования</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+       <property name="scaledContents">
+        <bool>false</bool>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_angle_center_coord">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>60</y>
+         <width>141</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;2. Угол поворота &lt;span style=&quot; font-weight:600;&quot;&gt;вокруг начала координат&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="angle_center_coord">
+       <property name="geometry">
+        <rect>
+         <x>182</x>
+         <y>59</y>
+         <width>71</width>
+         <height>25</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="apply_scale">
+       <property name="geometry">
+        <rect>
+         <x>261</x>
+         <y>31</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Применить</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="apply_angle_center_coord">
+       <property name="geometry">
+        <rect>
+         <x>261</x>
+         <y>60</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Применить</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="apply_center_img">
+       <property name="geometry">
+        <rect>
+         <x>261</x>
+         <y>89</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Применить</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="apply_mirror_horizontal">
+       <property name="geometry">
+        <rect>
+         <x>261</x>
+         <y>137</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Применить</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="apply_mirror_vertical">
+       <property name="geometry">
+        <rect>
+         <x>261</x>
+         <y>167</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Применить</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="apply_angle_bevel">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>196</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Применить</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="angle_center_img">
+       <property name="geometry">
+        <rect>
+         <x>182</x>
+         <y>89</y>
+         <width>71</width>
+         <height>24</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="angle_bevel">
+       <property name="geometry">
+        <rect>
+         <x>184</x>
+         <y>196</y>
+         <width>71</width>
+         <height>23</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_angle_center_img">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>90</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;3. Угол поворота &lt;span style=&quot; font-weight:600;&quot;&gt;вокруг центра изображения&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_mirror_horizontal">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>127</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;4. Зеркальное отрожение относительно &lt;span style=&quot; font-weight:600;&quot;&gt;горизонтальной&lt;/span&gt; оси&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_mirror_vertical">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>157</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;5. Зеркальное отрожение относительно &lt;span style=&quot; font-weight:600;&quot;&gt;вертикальной&lt;/span&gt; оси&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_angle_bevel">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>196</y>
+         <width>101</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>6. Угол скоса</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="lab_4">
+     <attribute name="title">
+      <string>Lab 4</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="lab_5">
+     <attribute name="title">
+      <string>Lab 5</string>
+     </attribute>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1271</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
