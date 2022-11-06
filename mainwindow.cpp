@@ -58,6 +58,29 @@ bool MainWindow::in_color_range(int val){
   return false;
 }
 
+void MainWindow::image_scaling(QImage &img, QImage &new_img, double scale) {
+  if (scale >= 1) {
+    int K = roundl(scale);
+    for (int i = 0; i < img.width(); i += K) {
+      for (int j = 0; j < img.height(); j += K) {
+        for (int d = 0; d < K; ++d) {
+          for (int f = 0; f < K; ++f) {
+            new_img.setPixel(K * i + d, K * j + f, img.pixel(i, j));
+          }
+        }
+      }
+    }
+  } else if (scale > 0 && scale < 1) {
+    int K = roundl(1/scale);
+    for (int i = 0; i < new_img.width(); i += K) {
+      for (int j = 0; j < new_img.height(); j += K) {
+        new_img.setPixel(i, j, img.pixel(i*K, j*K)); // вне диапазона
+      }
+    }
+  }
+}
+
+
 void MainWindow::process_image(QImage &img, const std::string color){
   QColor rgb;
 
@@ -130,78 +153,132 @@ void MainWindow::on_grey_image_clicked() {
   full_process_img("grey");
 }
 
-void MainWindow::on_apply_scale_clicked() {
-  // получаем исходное изображение
-  QImage image = capture_image(ui->image_2->pixmap());
-  QImage new_image;
 
-  // получаем коэффициент масштабирования, округляем его
+
+void MainWindow::on_apply_scale_clicked() {
+  QImage image = capture_image(ui->image_2->pixmap());
+  // получаем коэффициент масштабирования
   double scale = std::stod(ui->scale->text().toStdString());
 
+
   if (scale >= 1) {
-      // задаем коэффициент масштабирования
-      int K = round(scale);
+    QImage new_image(image.width()*scale,
+                     image.height()*scale,
+                     QImage::Format_RGB32);
 
-      // устанавливаем размер изображения согласно коэф. увеличения
+    image_scaling(image, new_image, scale);
 
-      QSize new_image_size(image.width()*K, image.height()*K);
-      new_image.scaled(new_image_size);
+    QPixmap pix = QPixmap::fromImage(new_image);
+    ui->image_2->setPixmap(pix);
 
-      qDebug() << "image: " << image.width() << " " << image.height();
-      qDebug() << "scale: " << K;
-      qDebug() << "new_image_size: " << new_image_size.width() << new_image_size.height();
-      qDebug() << "new_image: " << new_image.width() << " " << new_image.height();
+  } else if (scale < 1 && scale > 0) {
 
-      for (int i = 0; i < 2; i += K){
-        for (int j = 0; j < 2; j += K){
-          for (int d = 0; d < K; ++d) {
-            for (int f = 0; f < K; ++f) {
-              new_image.pixel(K * i + d, K * j + f);
-            }
-          }
-        }
-      }
+    QImage new_image(roundf(image.width()/scale),
+                     roundf(image.height()/scale),
+                     QImage::Format_RGB32);
+
+    image_scaling(image, new_image, scale);
+
+    QPixmap pix = QPixmap::fromImage(new_image);
+    ui->image_2->setPixmap(pix);
   }
 
 
+}
 
+void MainWindow::on_apply_angle_center_coord_clicked() {
+  QImage image = capture_image(ui->image_2->pixmap());
+  QImage new_image(image.width(),
+                   image.height(),
+                   QImage::Format_RGB32);
 
+  double angle = std::stod(ui->angle_center_coord->text().toStdString());
+
+  for (int i = 0; i < image.width(); ++i) {
+    for (int j = 0; j < image.height(); ++j) {
+      new_image.setPixel(i, j, image.pixel(roundf(i*cos(angle)-j*sin(angle)),
+                                           roundf(i*sin(angle)+j*cos(angle)))); // вне диапазона
+    }
+  }
 
   QPixmap pix = QPixmap::fromImage(new_image);
   ui->image_2->setPixmap(pix);
 }
 
-void MainWindow::on_apply_angle_center_coord_clicked() {
-
-}
-
 void MainWindow::on_apply_center_img_clicked() {
   QImage image = capture_image(ui->image_2->pixmap());
-  QPixmap pix = QPixmap::fromImage(image);
-  QPixmap rotate(pix.size());
-  QPainter p(&rotate);
-  rotate.fill(Qt::transparent);
+  QImage new_image(image.width(),
+                   image.height(),
+                   QImage::Format_RGB32);
+  double angle = std::stod(ui->angle_center_img->text().toStdString());
 
-  double angle = std::stod(ui->angle_center_coord->text().toStdString());
-  p.translate(rotate.size().width() / 2, rotate.size().height() / 2);
-  p.rotate(angle); // градус
-  p.translate(-rotate.size().width() / 2, -rotate.size().height() / 2);
-  p.drawPixmap(0, 0, pix);
-  p.end();
-  pix = rotate;
-  ui->image_2->clear();
+//  for (int i = 0; i < image.width(); ++i) {
+//    for (int j = 0; j < image.height(); ++j) {
+//      new_image.setPixel(i, j, image.pixel(roundf(i*cos(angle)-j*sin(angle)),
+//                                           roundf(i*sin(angle)+j*cos(angle)))); // вне диапазона
+//    }
+//  }
+
+  QPixmap pix = QPixmap::fromImage(new_image);
   ui->image_2->setPixmap(pix);
 }
 
 void MainWindow::on_apply_mirror_horizontal_clicked() {
+  QImage image = capture_image(ui->image_2->pixmap());
+  QImage new_image(image.width(),
+                   image.height(),
+                   QImage::Format_RGB32);
 
+  for (int i = 0; i < new_image.width(); ++i) {
+    for (int j = 0; j < new_image.height(); ++j) {
+      new_image.setPixel(i, j, image.pixel(i, image.height() - j - 1)); // вне диапазона
+    }
+  }
+
+  QPixmap pix = QPixmap::fromImage(new_image);
+  ui->image_2->setPixmap(pix);
 }
 
 void MainWindow::on_apply_mirror_vertical_clicked() {
+  QImage image = capture_image(ui->image_2->pixmap());
+  QImage new_image(image.width(),
+                   image.height(),
+                   QImage::Format_RGB32);
 
+  for (int i = 0; i < new_image.width(); ++i) {
+    for (int j = 0; j < new_image.height(); ++j) {
+      new_image.setPixel(i, j, image.pixel(image.width() - i - 1, j)); // вне диапазона
+    }
+  }
+
+  QPixmap pix = QPixmap::fromImage(new_image);
+  ui->image_2->setPixmap(pix);
 }
 
 void MainWindow::on_apply_angle_bevel_clicked() {
+  QImage image = capture_image(ui->image_2->pixmap());
+  QImage new_image(image.width(),
+                   image.height(),
+                   QImage::Format_RGB32);
+  double koeff_A = std::stod(ui->koeff_A->text().toStdString());
+  double koeff_B = std::stod(ui->koeff_B->text().toStdString());
+  double koeff_C = std::stod(ui->koeff_C->text().toStdString());
+  double koeff_D = std::stod(ui->koeff_D->text().toStdString());
+  int min_size;
 
+  if (new_image.width() > new_image.height()) {
+      min_size = new_image.height();
+  } else {
+      min_size = new_image.width();
+  }
+  for (int i = 0; i < min_size; ++i) {
+    for (int j = 0; j < min_size; ++j) {
+      new_image.setPixel(i, j, image.pixel(koeff_A * i + koeff_B * j,
+                                           koeff_C * i + koeff_D * j)); // вне диапазона
+    }
+  }
+
+  QPixmap pix = QPixmap::fromImage(new_image);
+  ui->image_2->setPixmap(pix);
 }
 

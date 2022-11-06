@@ -305,16 +305,6 @@
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="angle_bevel">
-       <property name="geometry">
-        <rect>
-         <x>184</x>
-         <y>196</y>
-         <width>71</width>
-         <height>23</height>
-        </rect>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_angle_center_img">
        <property name="geometry">
         <rect>
@@ -363,17 +353,57 @@
         <bool>true</bool>
        </property>
       </widget>
+      <widget class="QLineEdit" name="koeff_D">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>200</y>
+         <width>31</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
       <widget class="QLabel" name="label_angle_bevel">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>196</y>
-         <width>101</width>
+         <x>21</x>
+         <y>200</y>
+         <width>68</width>
          <height>16</height>
         </rect>
        </property>
        <property name="text">
         <string>6. Угол скоса</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="koeff_C">
+       <property name="geometry">
+        <rect>
+         <x>183</x>
+         <y>200</y>
+         <width>31</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="koeff_B">
+       <property name="geometry">
+        <rect>
+         <x>145</x>
+         <y>200</y>
+         <width>31</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="koeff_A">
+       <property name="geometry">
+        <rect>
+         <x>109</x>
+         <y>200</y>
+         <width>31</width>
+         <height>20</height>
+        </rect>
        </property>
       </widget>
      </widget>

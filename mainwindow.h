@@ -45,6 +45,7 @@ private:
     void process_image(QImage &img, const std::string color);
     void set_image(QImage &img);
     void full_process_img(const std::string color);
+    void image_scaling(QImage &img, QImage &new_img, double scale);
 
 
 };
