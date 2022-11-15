@@ -33,6 +33,7 @@ private slots:
     void on_apply_mirror_horizontal_clicked();
     void on_apply_mirror_vertical_clicked();
     void on_apply_angle_bevel_clicked();
+    void on_revoke_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -45,7 +46,9 @@ private:
     void process_image(QImage &img, const std::string color);
     void set_image(QImage &img);
     void full_process_img(const std::string color);
-    void image_scaling(QImage &img, QImage &new_img, double scale);
+    void image_scaling(QImage &img, QImage &new_img, const double &scale);
+
+    std::vector<QImage> previous_state;
 
 
 };
